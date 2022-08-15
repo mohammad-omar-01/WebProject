@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
+@font-face {
+    font-family: 'Sukar Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Sukar Regular'), url('../../font/SukarRegular.woff') format('woff');
+}
+
+
+
+
+@font-face {
+    font-family: 'Sukar Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Sukar Bold'), url('../../font/SukarBold.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Sukar black';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Sukar black'), url('../../font/SukarBlack.woff') format('woff');
+}
+
+
+.shadow {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+label{
+    padding-left: 250px;
+}
+.mb-4{
+display: flex
+
+}
+
+body{
+    background: linear-gradient(-89deg, #2d6868 , #1c789a);
+    font-family: "Sukar Regular", sans-serif;
+}
+
+.styleButton{
+    display: table-footer-group;
+}
+label{
+    display: table-footer-group;
+}
+.col-md-6{
+    align-items: self-start;
+    justify-content: right;
+}
+.profile-tab-nav {
+    min-width: 250px;
+}
+
+.tab-content {
+    flex: 1;
+}
+#account-tab{
+    padding-left: 230px;
+}
+#password-tab{
+    position: relative;
+    padding-left: 213px;
+    direction: rtl;
+}
+#security-tab{
+    position: relative;
+    padding-left: 245px;
+    direction: rtl;
+}
+#notification-tab{
+    position: relative;
+    padding-left: 220px;
+    direction: rtl;
+}
+#application-tab{
+    padding-left: 240px;
+    direction: rtl;
+}
+
+*[dir=ltr] div.row div.label, *[dir=rtl] div.row div.formw {
+    float: left;
+    text-align: right;
+}
+*[dir=rtl] div.row div.label, *[dir=ltr] div.row div.formw {
+    float: right;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.dir{
+    direction: rtl;
+}
+.dir2{
+    direction: ltr;
+}
+
+
+.nav-pills a.nav-link {
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    color: #333;
+}
+.nav-pills a.nav-link i {
+    width: 20px;
+}
+
+.img-circle img {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    border: 5px solid #fff;
+}

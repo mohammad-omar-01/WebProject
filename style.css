@@ -1,0 +1,358 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
+
+@font-face {
+    font-family: 'Sukar Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Sukar Regular'), url('font/SukarBold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Sukar Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Sukar Bold'), url('font/SukarBold.woff') format('woff');
+}
+@font-face {
+    font-family: 'Sukar black';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Sukar black'), url('font/SukarBold.woff') format('woff');
+}
+.mainm#hh.active{
+    overflow-y: hidden;
+}
+
+#left-panel img{
+    width: 100%;
+    max-width: 350px;
+    min-height: 500px;
+    height: auto;
+}
+
+body{
+    width: 100%;
+}
+#left-panel{
+    overflow: hidden;
+}
+#left-panel,#right-panel{
+    box-sizing: border-box;
+    box-shadow: 1px 10px #2e6c6c;
+    width: 50%;
+    height: 30%;
+    float: left;
+    position: relative;
+    padding: 60px;
+    line-height: 1;
+    margin-top: 139px;
+}
+.btn{
+    display: block;
+    width: 200px;
+    padding: 16px;
+    margin-top: 400px;
+    margin-left: 920px;
+    margin-right: 870px;
+    border:solid #15cece;
+    border-radius: 30px;
+}
+#left-panel p+p,#right-panel p+p{
+    margin-top: 20px;
+}
+#left-panel{
+    align-items: center;
+    background-color: #000000;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    height: 600px;
+    padding-right: 70px;
+
+}
+.info{
+    position: absolute;
+    top:70px;
+    right: 20px;
+}
+.MainName{
+    box-sizing: border-box;
+    position: relative;
+    font-weight: 600;
+    font-size: 60px;
+    margin-left: 350px;
+    border-bottom: 2px  #04befe;
+}
+.mawsem{
+    position: relative;
+    margin-left: 430px;
+    margin-right: -300px;
+    margin-top: 20px;
+}
+.h{
+    position: relative;
+    margin-top: -29px;
+    margin-left: 10cm;
+
+}
+.Feed-back{
+    position: relative;
+    top:2.3cm;
+    left:5.3cm;
+}
+.Feed-back .checked{
+    color: gold;
+}
+.h2{
+    margin-right: 30px;
+    margin-top: 30px;
+    text-align: right;
+    font-size: 14px;
+    font-family: "Sukar Regular";
+    line-height: 0.8cm;
+}
+.small-line{
+    border-left: 2px solid green;
+    height: 15px;
+    position: relative;
+    left: 74%;
+    margin-left: 10px;
+    top: -15px;
+}
+#right-panel{
+    overflow: hidden;
+    background-color: #000000;
+    text-align: center;
+    height: 600px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+
+}
+.banner#bann.active{
+    filter: blur(30px);
+}
+#wrapper{
+    font-family: "Sukar Bold";
+    font-weight: 500;
+    color: #FFFF;
+    opacity: 0;
+    direction: rtl;
+    text-align: right;
+    top:10px;
+    right: 80px;
+    bottom: 30px;
+    left: 80px;
+    height: 1080px;
+    transform: translate(1%,-50%);
+    transition: all 0.5s;
+    z-index: 2;
+
+}
+#wrapper.open{
+    opacity: 1;
+}
+#modal{
+    position: absolute;
+    top:30px;
+    left:20%;
+    width: 60%;
+    height: 800px;
+    perspective: 1400px;
+}
+.close-btn{
+    position: absolute;
+    top:20px;
+    right: 20px;
+    font-size: 40px;
+    font-weight: bold;
+    color:#FFFFFF;
+    cursor: pointer;
+
+}
+
+* {
+margin:0;
+padding:0;
+    box-sizing: border-box;
+font-family: "Sukar Regular";
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: left;
+
+}
+
+.design{
+    position: absolute;
+
+}
+header {
+    position: fixed;
+    transition: 1s;
+
+    background: transparent;
+
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 100px;
+    z-index: 10;
+font-family: "Sukar Bold";
+}
+.header-fixed-top.scrolled {
+    background-color: #fff !important;
+    transition: background-color 200ms linear;
+}
+header .logo img {
+  max-width: 150px;
+}
+.search input {
+    text-align: center;
+}
+header .navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navigation-brand{
+    color: #fff;
+    font-size: 45px;
+    cursor: pointer;
+}
+header .navigation .logo {
+    margin-left: 100px;
+}
+header .navigation .search {
+    margin-right: 100px;
+}
+li {
+    list-style: none;
+    padding: 20px 40px;
+
+}
+  li a {
+     color: #00AFC1;
+     text-decoration: none;
+     font-weight:1000 ;
+     letter-spacing: 1px;
+      border-bottom: 1px solid white;
+ }
+li :hover   {
+    color: #006778;
+}
+
+.search {
+    position: relative;
+    width: 300px;
+    height: 40px;
+    backdrop-filter: blur(10px);
+
+}
+.search input {
+    position: absolute;
+    top: 0 ;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    color: black;
+    border: 1px solid white ;
+    border-radius: 20px ;
+outline: none;
+
+}
+.search .fa-search {
+    color: white;
+   position: absolute;
+    top: 50%;
+    left: 250px;
+    transform: translateY(-50%);
+    padding-left: 10px;
+    border-left:2px solid white ;
+
+}
+.search input::placeholder {
+    color: #00AFC1;
+    font-weight:1000 ;
+
+}
+.banner video{
+    top: 0;
+
+position: relative;
+    width: 100%;
+    min-height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 0 0 0px;
+    z-index:0;
+}
+.banner .content{
+    position: relative;
+    z-index: 1;
+    max-width: 550px;
+    margin-top: -400px;
+    margin-left: 180px;
+}
+.content .logoruwad {
+max-width:250px ;
+padding-bottom: 20px;
+    margin-top: -400px;
+    margin-left: 180px;
+
+}
+.banner .content h3{
+    color: #00AFC1;
+    margin-left: 220px;
+
+}
+.banner .content h3 span{
+  padding: 0 9px;
+border-left:1px solid  #00AFC1;
+}
+.banner .content h3 span:last-child{
+    border-left:0px ;
+}
+.banner .content .buttons{
+    position: relative;
+    margin-top: 30px;
+}
+
+.banner .content .buttons a{
+display: inline-block;
+margin-left: 100px;
+    background:#00AFC1 ;
+    color: white;
+    padding: 6px 20px;
+text-decoration: none;
+    letter-spacing: 1px;
+border-radius: 14px;
+
+}
+nav {
+    position: -webkit-sticky;
+    position: sticky;
+    /* sticky or fixed are fine */
+    margin-top: 0px;
+    height: 85px;
+    width: 100%;
+    background: linear-gradient(to bottom, #000, #0003 70%,#0000); /* background when scroll is in the top */
+    transition: background .5s; /* control how smooth the background changes */
+    position: fixed;
+    transition: 1s;
+
+
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 100px;
+}
+
+nav.scrolled {
+    background: #0a0a0a;
+}

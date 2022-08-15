@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <script>
+        var navbar = document.querySelector('nav')
+
+        window.onscroll = function() {
+
+            // pageYOffset or scrollY
+            if (window.pageYOffset > 0) {
+                navbar.classList.add('scrolled')
+            } else {
+                navbar.classList.remove('scrolled')
+            }
+        }
+    </script>
+    <meta name = "" , content="width = device=width , initial-scale =1.0">
+    <meta charset="UTF-8">
+    <title>  Home Page</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <link rel="stylesheet" href="C:\Users\lenoi\PhpstormProjects\font-awesome-4.7.0/css/font-awesome.min.css">
+    <script
+            src="https://kit.fontawesome.com/64d58efce2.js"
+            crossorigin="anonymous"
+    ></script>
+</head>
+<body class="mainm"id="hh">
+<header>
+    <nav class="navigation">
+    <a href="#" class="logo">
+        <img src="IEEE LOGO.png">
+        <u1 >
+            <li> <a href="#"> الرئيسية </a> </li>
+            <li> <a href="#">بودكاست</a> </li>
+            <li> <a href="#">لطفلك</a> </li>
+            <li> <a href="#">من نحن</a> </li>
+
+        </u1>
+
+        <div class="search">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <input type="text" placeholder="بحث">
+        </div>
+    </a>
+    </nav>
+</header>
+<div class="banner" id="bann">
+    <video id="video1" src="y2meta.com-الرواد _ برومو مع أحمد الشقيري-(1080p).mp4" autoplay="autoplay " muted="muted" loop="loop">
+
+      </video>
+<div class="content" >
+    <div class="design">
+    <img src="Logo_alrwaad.png" class="logoruwad">
+    <h3>
+        <span>2022</span>
+        <span> 01 حلقات</span>
+        <span>ريادي</span>
+
+    </h3>
+<div class="buttons">
+    <a href="#">تشغيل <i class="fa fa-play" aria-hidden="true"></i>
+    </a>
+    <a href="#" onclick="show_pup()">المزيد من المعلومات <i class="fa fa-info" aria-hidden="true"></i>
+
+    </a>
+
+</div>
+    </div>
+</div>
+</div>
+<div id="wrapper">
+    <div id="modal">
+        <div id="left-panel">
+            <div class="image">
+                <img src="images/رواد.jpg">
+            </div>
+
+        </div>
+        <div id="right-panel">
+            <div class="close-btn" onclick="hideit()">&times;</div>
+            <div class="info">
+                <h1 class="MainName">  الرواد
+                </h1>
+                <h5 class="mawsem">
+                    الموسم
+
+                </h5>
+
+                <div class="small-line"></div>
+                <h5 class="h">الأول</h5>
+                <h5 class="h2">
+                    برنامج احمد الشقيري الرواد الحلقة 4 الرابعة في رمضان 2022 ، ويطلب الجمهور الكريم في الوطن العربي في هذه الساعات من اليوم الأربعاء الموافق 20-4-2022 عبر مواقع التواصل الاجتماعي والمنصات الرقمية رابط مشاهدة الحلقة الجديدة من برنامج الرواد للمقدم الإعلامي احمد الشقيري ، المعروف لدى كافة الجمهور العربي للمتابعين لقناة mbc وقناته على اليوتيوب في برنامجه الشهير الذي يتناول فيه قصص وحكايات جميلة جدا تسر جميع المشاهدين ، ووضع لكم فريق فلسطين اليوم التفاصيل كاملة هنا .
+
+                    هذه المشاهد دفع الجمهور إلى مشاهدة برنامج احمد الشقيري الرواد الحلقة 4 الرابعة في رمضان 2022 حيث بدأت أولى حلقاته يوم الاحد الماضي الموافق 16 ابريل الحالي أي في منتصف رمضان المبارك وسط تسجيل نسبة كبير من المشاهدات لا سيما على اليوتيوب ، ولمشاهدتها يترتب عليكم المتابعة
+                </h5>
+
+            </div>
+            <div class="Feed-back">
+                <span class="fa fa-star checked" ></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star" onclick="chckuncheck()"></span>
+                <span class="fa fa-star" onclick="chckuncheck()"></span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    var myVideo=document.getElementById("video1");
+    var mainpage=document.getElementsByClassName('mainm');
+    var banner=document.getElementById('bann');
+    var checkit=document.getElementsByClassName('Feed-back');
+
+    function  toggle(){
+          banner.classList.toggle('active');
+        mainpage.classList.toggle('active');
+
+    }
+    function show_pup(){
+        document.getElementById('wrapper').classList.add('open');
+        toggle();
+        myVideo.muted=false;
+        myVideo.pause();
+           }
+    function hideit(){
+        document.getElementById('wrapper').classList.remove('open');
+        toggle();
+        myVideo.play();
+    }
+
+</script>
+
+
+</body>
+</html>

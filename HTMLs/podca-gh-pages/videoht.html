@@ -1,0 +1,72 @@
+<?php
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Podcast</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,700,900">
+  <link rel="stylesheet" href="css/bootstrap1.min.css">
+  <link rel="shortcut icon" href="./songs/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/stylse.css">
+</head>
+<body>
+<div class="site-section bg-light">
+  <div class="container">
+    <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
+<!--      <div class="image" style="background-image: url('images/img_2.jpg');"></div>-->
+      <div class="text" style="width: 100%">
+        <h3 class="font-weight-light">Episode 07: How To Create Web Page Using Bootstrap 4</h3>
+        <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By Mike Smith <span class="sep">/</span> 16 September 2017 <span class="sep">/</span> 1:30:20</small></span></div>
+        <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti repellat mollitia consequatur, optio nesciunt placeat. Iste voluptates excepturi tenetur, nesciunt.</p>
+        <div class="player">
+          <video width="100%" controls>
+            <source src="songs/hi.MP4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+
+  <div class="container" data-aos="fade-up">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <div class="site-block-27">
+          <ul>
+            <li><a href="#">&lt;</a></li>
+            <li class="active"><span>1</span></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&gt;</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/bootstrap.min.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var mediaElements = document.querySelectorAll('video, audio'), total = mediaElements.length;
+
+    for (var i = 0; i < total; i++) {
+      new MediaElementPlayer(mediaElements[i], {
+        pluginPath: 'https://cdn.jsdelivr.net/npm/mediaelement@4.2.7/build/',
+        shimScriptAccess: 'always',
+        success: function () {
+          var target = document.body.querySelectorAll('.player'), targetTotal = target.length;
+          for (var j = 0; j < targetTotal; j++) {
+            target[j].style.visibility = 'visible';
+          }
+        }
+      });
+    }
+  });
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

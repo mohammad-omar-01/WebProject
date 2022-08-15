@@ -1,0 +1,157 @@
+@font-face {
+    font-family: 'Sukar Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Sukar Regular'), url('/font/SukarRegular.woff') format('woff');
+}
+
+
+
+
+@font-face {
+    font-family: 'Sukar Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Sukar Bold'), url('/font/SukarBold.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'Sukar black';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Sukar black'), url('/font/SukarBlack.woff') format('woff');
+}
+
+body{
+    font-family: "Sukar Bold";
+    font-weight: 500;
+    color: #FFFF;
+
+}
+
+#left-panel img{
+    width: 100%;
+    max-width: 350px;
+    min-height: 500px;
+    height: auto;
+}
+
+
+#left-panel{
+    overflow: hidden;
+}
+#left-panel,#right-panel{
+    box-sizing: border-box;
+    box-shadow: 1px 10px #2e6c6c;
+    width: 50%;
+    height: 30%;
+    float: left;
+    position: relative;
+    padding: 60px;
+    line-height: 1;
+    margin-top: 139px;
+}
+.btn{
+    display: block;
+    width: 200px;
+    padding: 16px;
+    margin-top: 400px;
+    margin-left: 920px;
+    margin-right: 870px;
+    border:solid #15cece;
+    border-radius: 30px;
+}
+#left-panel p+p,#right-panel p+p{
+    margin-top: 20px;
+}
+#left-panel{
+align-items: center;
+    background-color: #000000;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    height: 600px;
+    padding-right: 70px;
+
+}
+.info{
+    position: absolute;
+    top:70px;
+    right: 20px;
+}
+.MainName{
+
+    position: relative;
+    font-weight: 600;
+    font-size: 60px;
+    margin-left: 350px;
+
+}
+.mawsem{
+    position: relative;
+    margin-left: 100px;
+    margin-right: -300px;
+    margin-top: 20px;
+}
+.h{
+    position: relative;
+    margin-top: -50px;
+    margin-left: 260px;
+
+}
+.h2{
+    margin-right: 30px;
+    align-items: self-start;
+    font-size: 14px;
+    font-family: "Sukar Regular";
+    line-height: 0.8cm;
+}
+.small-line{
+    border-left: 2px solid green;
+    height: 15px;
+    position: relative;
+    left: 75%;
+    margin-left: 16px;
+    top: -39px;
+}
+#right-panel{
+    overflow: hidden;
+    background-color: #000000;
+    text-align: center;
+    height: 600px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+
+}
+#wrapper{
+    opacity: 0;
+    top:30px;
+    right: 80px;
+    bottom: 30px;
+    left: 80px;
+    height: 1080px;
+    transform: translate(1%,2%);
+    transition: all 0.5s;
+}
+#wrapper.open{
+    opacity: 1;
+
+}
+#modal{
+    position: absolute;
+    top:30px;
+    left:20%;
+    width: 60%;
+    height: 800px;
+    perspective: 1400px;
+}
+.close-btn{
+    position: absolute;
+    top:20px;
+    right: 20px;
+    font-size: 40px;
+    font-weight: bold;
+    color:#FFFFFF;
+    cursor: pointer;
+
+}
