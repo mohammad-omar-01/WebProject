@@ -1,6 +1,36 @@
 
 <?php
-    ?>
+session_start();
+include "connection.php";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['SubmitNewAudio'])) {
+        $name = $_POST["AudioName"];
+        echo "NAMEIS".$name;
+        $photo = $_FILES["Pic"]["name"]; 
+        $query = "INSERT INTO podcastmaster (name, cover) VALUES('$name', '$photo')";
+        $result = mysqli_query($con, $query);
+        uploadFileByName("Pic");
+
+    }
+}
+
+$isAdmin=($_SESSION['login_user']=='Mohammad Omar') ? True : False;
+
+$query3 = "SELECT * FROM podcastmaster";
+$result3 = mysqli_query($con, $query3);
+$Podcasts = [];
+
+
+while ($row3 = mysqli_fetch_array($result3)) {
+    array_push($Podcasts, $row3);
+}
+function uploadFileByName($fileParamName){
+
+    $target_dir = "../Uploads/";
+    $target_file = $target_dir . basename($_FILES[$fileParamName]["name"]);
+    move_uploaded_file( $_FILES[$fileParamName]["tmp_name"],$target_file);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,9 +114,31 @@
     <link rel="stylesheet" href="../css/magnific-popup.css" />
     <link rel="stylesheet" href="../css/select2.min.css" />
     <link rel="stylesheet" href="../css/select2-bootstrap4.min.css" />
-    <link rel="stylesheet" href="../css/slider.css" />
-    <link rel="stylesheet" href="../css/videoplaylist.css  " />
-    <link rel="stylesheet" href="../css/slick-animation.css" />
+    <link rel="stylesheet" type="text/css"
+          href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
+          integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <link rel="stylesheet" href="C:\Users\lenoi\PhpstormProjects\font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   
+    <script type='text/javascript'
+            src='http://code.jquery.com/jquery-1.10.1.js'></script>
+    <link rel="stylesheet" type="text/css"
+          href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
+          integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <link rel="stylesheet" href="C:\Users\lenoi\PhpstormProjects\font-awesome-4.7.0/css/font-awesome.min.css">
+    <script
+            src="https://kit.fontawesome.com/64d58efce2.js"
+            crossorigin="anonymous"
+    ></script>
+    
     <script>
         function includeHTML() {
             var z, i, elmnt, file, xhttp;
@@ -97,7 +149,6 @@
                 /search for elements with a certain atrribute:/
                 file = elmnt.getAttribute("w3-include-html");
                 if (file) {
-                    /* Make an HTTP request using the attribute value as the file name: */
                     xhttp = new XMLHttpRequest();
                     xhttp.onreadystatechange = function() {
                         if (this.readyState == 4) {
@@ -189,148 +240,78 @@
     </nav>
 </header>
 
-<div class="responsive">
-    <div class="galleryR">
-
-        <div class="galleryC" onmouseover="this.childNodes[3].style.display='flex'"onmouseout="this.childNodes[3].style.display='none'">
-            <a  href="podca-gh-pages/videoht.php">
-                <img src="../images/artworks-000637381330-fycivh-t500x500.jpg" alt="shawshank"width="100%" onclick="function f() {
-
-                    }">
-            </a>
-            <div class="desc" id="p1" style="display: none;   direction: rtl;">
-                <h2 style="font-family: Sukar ">بعد أمس </h2>
-                <p style="font-family: Sukar">  </p>
-
-            </div>
-
-        </div>
-        <div class="galleryC" onmouseover="this.childNodes[3].style.display='flex'"onmouseout="this.childNodes[3].style.display='none'">
-            <a href="podca-gh-pages/index.php">
-                <img src="../images/41dO1SVsTKL._SL500_.jpg" alt="the prestige"width="100%">
-            </a>
-            <div class="desc" id="p2" style="display: none;   direction: rtl;">
-                <h2 style="font-family: Sukar">أثر الفراشة</h2>
-                <p style="font-family: Sukar"></p>
-
-            </div>
-        </div>
-        <div class="galleryC" onmouseover="this.childNodes[3].style.display='flex'"onmouseout="this.childNodes[3].style.display='none'">
-            <a href="podca-gh-pages/index2.php">
-                <img src="../images/Business_wars_aljazeera_podcasts-1.png" alt="1917"width="100%">
-            </a>
-            <div class="desc" id="p3" style="display: none ;   direction: rtl;">
-                <h2 style="font-family: Sukar">حروب الأعمال</h2>
-                <p style="font-family: Sukar"></p>
-
-            </div>
-        </div>
-        <div class="galleryC" onmouseover="this.childNodes[3].style.display='flex'"onmouseout="this.childNodes[3].style.display='none'">
-            <a href="podca-gh-pages/index.php">
-                <img src="../images/artworks-6bvbaZJyglLWSIPI-SocZWQ-t500x500.jpg" alt="the dark knight"width="100%">
-
-            </a>
-            <div class="desc" id="p4" style="display: none">
-                <h2 style="font-family: Sukar;   direction: rtl; ">حكايات حرب</h2>
-                <p style="font-family: Sukar"></p>
-
-            </div>
-        </div>
-        <div class="galleryC" onmouseover="this.childNodes[3].style.display='flex'"onmouseout="this.childNodes[3].style.display='none'">
-            <a href="podca-gh-pages/index.php">
-                <img src="../images/download%20(1).jpg" alt="inception"width="100%">
-            </a>
-            <div class="desc" id="p5" style="display: none">
-                <h2 style="font-family: Sukar ;   direction: rtl; ">العدو المشترك</h2>
-                <p style="font-family: Sukar"></p>
-
-            </div>
-        </div>
-        <div class="galleryC" onmouseover="this.childNodes[3].style.display='flex'"onmouseout="this.childNodes[3].style.display='none'">
-            <a href="podca-gh-pages/index.php">
-                <img src="../images/Lahtha_aljazeera_podcasts.png" alt="the godfather"width="100%">
-            </a>
-            <div class="desc" style= "direction: rtl;display: none"  >
-                <h2 style="font-family: Sukar">لحظة</h2>
-                <p style="font-family: Sukar">لحظة</p>
-
-            </div>
-        </div>
-
-
-
-    </div>
-    <div class="galleryR">
-
-        <div class="galleryC" onmouseover="this.childNodes[3].style.display='flex'"onmouseout="this.childNodes[3].style.display='none'">
-            <a href="podca-gh-pages/podca-gh-pages/index.php">
-                <img src="../images/artworks-000637381330-fycivh-t500x500.jpg" alt="shawshank"width="100%">
-            </a>
-            <div class="desc" id="p1" style="display: none">
-                <h2 style="font-family: Sukar "> </h2>
-                <p style="font-family: Sukar"></p>
-
-            </div>
-
-        </div>
-        <div class="galleryC" onmouseover="this.childNodes[3].style.display='flex'"onmouseout="this.childNodes[3].style.display='none'">
-            <a href="podca-gh-pages/podca-gh-pages/index.php">
-                <img src="../images/41dO1SVsTKL._SL500_.jpg" alt="the prestige"width="100%">
-            </a>
-            <div class="desc" id="p2" style="display: none">
-                <h2 style="font-family: Sukar"></h2>
-                <p style="font-family: Sukar"></p>
-
-            </div>
-        </div>
-        <div class="galleryC" onmouseover="this.childNodes[3].style.display='flex'"onmouseout="this.childNodes[3].style.display='none'">
-            <a href="podca-gh-pages/podca-gh-pages/index.php">
-                <img src="../images/Business_wars_aljazeera_podcasts-1.png" alt="1917"width="100%">
-            </a>
-            <div class="desc" id="p3" style="display: none">
-                <h2 style="font-family: Sukar"></h2>
-                <p style="font-family: Sukar"> </p>
-
-            </div>
-        </div>
-        <div class="galleryC" onmouseover="this.childNodes[3].style.display='flex'"onmouseout="this.childNodes[3].style.display='none'">
-            <a href="podca-gh-pages/podca-gh-pages/index.php">
-                <img src="../images/artworks-6bvbaZJyglLWSIPI-SocZWQ-t500x500.jpg" alt="the dark knight"width="100%">
-
-            </a>
-            <div class="desc" id="p4" style="display: none">
-                <h2 style="font-family: Sukar"></h2>
-                <p style="font-family: Sukar"></p>
-
-            </div>
-        </div>
-        <div class="galleryC" onmouseover="this.childNodes[3].style.display='flex'"onmouseout="this.childNodes[3].style.display='none'">
-            <a href="podca-gh-pages/podca-gh-pages/index.php">
-                <img src="../images/download%20(1).jpg" alt="inception"width="100%">
-            </a>
-            <div class="desc" id="p5" style="display: none">
-                <h2 style="font-family: Sukar"></h2>
-                <p style="font-family: Sukar">  </p>
-
-            </div>
-        </div>
-        <div class="galleryC" onmouseover="this.childNodes[3].style.display='flex'"onmouseout="this.childNodes[3].style.display='none'">
-            <a href="podca-gh-pages/podca-gh-pages/index.php">
-                <img src="../images/Lahtha_aljazeera_podcasts.png" alt="inception"width="100%">
-            </a>
-            <div class="desc" id="p5" style="display: none">
-                <h2 style="font-family: Sukar"></h2>
-                <p style="font-family: Sukar">  </p>
-
-            </div>
-        </div>
-
-
-
-    </div>
-
+<div>
+    
+    <?php
+    if($isAdmin){?>
+    <button style="margin-top:100px;margin-left: 38cm" type="button" dir="rtl" data-toggle="modal" id="modal2" data-target="#addItemModal">إضافة
+</button>
+<?php }?>
+    
 
 </div>
+<div>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+         aria-hidden="true" id="addItemModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" dir="rtl" style="padding: 0cm .5cm 0cm .5cm">
+                <div class="modal-header">
+                    <h3 id="myModalLabel">إضافة محتوى جديد</h3>
+                </div>
+                <?php include "form.php" ?>
+             
+               
+            </div>
+        </div>
+    </div>
+
+    </div>
+   
+
+
+
+<div class="responsive">
+<div class="galleryR">
+
+<?php foreach ($Podcasts as $key => $row) {
+    $i=0;
+if($i==4){
+    $i=0;
+    ?> <div class="galleryR">
+          <div class="galleryC" onmouseover="this.childNodes[3].style.display='flex'"onmouseout="this.childNodes[3].style.display='none'">
+            <a href="podca-gh-pages/index.php?id= <?php echo $row['id']?>">
+                <img src="../Uploads/<?php echo $row['cover'] ?>" alt="the dark knight"width="100%">
+
+            </a>
+            <div class="desc" id="p4" style="display: none">
+                <h2 style="font-family: Sukar;   direction: rtl; "><?php echo $row['name']?></h2>
+                <p style="font-family: Sukar"></p>
+
+            </div>
+    </div>
+    </div>
+<?php
+
+continue;
+$i=$i+1;}
+?>
+ 
+     <div class="galleryC" onmouseover="this.childNodes[3].style.display='flex'"onmouseout="this.childNodes[3].style.display='none'">
+            <a href="podca-gh-pages/index.php?id=<?php echo $row['id']?>">
+                <img src="../Uploads/<?php echo $row['cover'] ?>" alt="the dark knight"width="100%">
+
+            </a>
+            <div class="desc" id="p4" style="display: none">
+                <h2 style="font-family: Sukar;   direction: rtl; "><?php echo $row['name']?></h2>
+                <p style="font-family: Sukar"></p>
+
+            </div>
+    </div>
+
+<?php }?>
+    </div>
+</div>
+
 
 
 </body>

@@ -1,5 +1,41 @@
 <?php
-?>
+session_start();
+$isAdmin=($_SESSION['login_user']=='Mohammad Omar') ? True : False;
+
+$id=$_GET["id"];
+include "../connection.php";
+$query = " SELECT * FROM podcasts WHERE MasterId = '$id'";
+$result3 = mysqli_query($con,$query);
+$Podcasts = [];
+while ($row3 = mysqli_fetch_array($result3)) {
+    array_push($Podcasts, $row3);
+  
+}
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST['SubmitNewAudio'])) {
+            $name = $_POST["podCastNAme"];
+            echo "NAMEIS".$name;
+            $pulicher=$_POST['pulicher'];
+            $photo = $_FILES["Pic"]["name"]; 
+            $Audio= $_FILES["Audio"]["name"];
+            $description=$_POST['description'];
+            $query = "INSERT INTO podcasts (Name,MasterId, photo,audio,description,pulicherNAme) VALUES('$name','$id','$photo','$Audio', '$description','$pulicher')";
+            $result = mysqli_query($con, $query);
+            uploadFileByName("Audio");
+            uploadFileByName("Pic");
+
+    
+        }
+    }
+    function uploadFileByName($fileParamName){
+
+        $target_dir = "../../Uploads/";
+        $target_file = $target_dir . basename($_FILES[$fileParamName]["name"]);
+        move_uploaded_file( $_FILES[$fileParamName]["tmp_name"],$target_file);
+    }
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +47,20 @@
     <link rel="stylesheet" href="css/bootstrap1.min.css">
     <link rel="stylesheet" href="css/stylse.css">
     <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
+          integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   
+    <script type='text/javascript'
+            src='http://code.jquery.com/jquery-1.10.1.js'></script>
+   
+    <script
+            src="https://kit.fontawesome.com/64d58efce2.js"
+            crossorigin="anonymous"
+    ></script>
 
 </head>
 <body>
@@ -71,6 +121,31 @@
 
     </nav>
 </header>
+
+    
+    <?php
+    if($isAdmin){?>
+    <button style="margin-top:100px;margin-left: 38cm" type="button" dir="rtl" data-toggle="modal" id="modal2" data-target="#addItemModal">إضافة
+</button>
+<?php }?>
+    
+<div>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+         aria-hidden="true" id="addItemModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" dir="rtl" style="padding: 0cm .5cm 0cm .5cm">
+                <div class="modal-header">
+                    <h3 id="myModalLabel">إضافة محتوى جديد</h3>
+                </div>
+                <?php include "formofPod.php"?>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    
+
+</div>
 <div class="site-section bg-light">
     <div class="container">
 
@@ -79,137 +154,23 @@
                 <h2 class="font-weight-bold text-black" ></h2>
             </div>
         </div>
+        <?php foreach ($Podcasts as $key => $row) {?>
+
         <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-            <div class="image" style="background-image: url('podcast/حكاية حرب/image.jpg');"></div>
+            <div class="image" style="background-image: url('../../Uploads/<?php echo $row['photo']?>');"></div>
             <div class="text">
-                <h3 class="font-weight-light">سيرة طفل مقاتل</h3>
-                <div class="text-white mb-3"><span class="text-black-opacity-05"><small> AlJazeera Podcast <span class="sep">/</span> 20 September 2021 </small></span></div>
-                <p class="mb-4">بطلنا في هذه الحكاية قد خاض حربين، الحرب العامة، وحربه الخاصة التي حاول بها الهروب من حربه الأولى، ليرسم أجمل الحكايا. حمل السلاح في عمر السادسة وأجبرته الحرب أن يقتل لكي ينجو، فما الذي فعله جوزيف؟ استمعوا إلى حكايته كاملة في بودكاست "حكايات الحرب" من الجزيرة بودكاست.</p>
+                <h3 class="font-weight-light"><?php echo $row['Name'] ?></h3>
+                <div class="text-white mb-3" dir="ltr"><span class="text-black-opacity-05"><small><?php echo $row['pulicherNAme']?> <span class="sep">/</span>  </small></span></div>
+                <p class="mb-4"><?php echo $row['description'] ?> </p>
                 <div class="player">
                     <audio id="player2" preload=auto controls style="width: 90%">
-                        <source src="podcast/حكاية%20حرب/Al%20Jazeera%20Podcasts%20الجزيرة%20بودكاست%20-%20سيرة%20طفل%20مقاتل.mp3" type="audio/mp3">
+                        <source src="../../Uploads/<?php echo $row['audio']?>" type="audio/mp3">
                     </audio>
                 </div>
             </div>
         </div>
-        <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-            <div class="image" style="background-image: url('podcast/حكاية حرب/image (1).jpg');"></div>
-            <div class="text">
-                <h3 class="font-weight-light">عندما تحارب الحمير</h3>
-                <div class="text-white mb-3"><span class="text-black-opacity-05"><small> AlJazeera Podcast <span class="sep">/</span> 13 September 2021 </small></span></div>
-                <p class="mb-4">هل تخوض الحيوانات حربًا سببها الإنسان؟ هل تتحلى الحيوانات بقيم الحرب كالتضحية والتفاني في العمل؟ حكاياتنا اليوم غاية في الغرابة، وفيها بعض من الطرافة، دور البطولة فيها للحمير، نعم للحمير! لا تفوتوا هذه الحلقة من "حكايات الحرب" بصوت أسعد طه.</p>
-                <div class="player">
-                    <audio id="player2" preload=auto controls style="width: 90%">
-                        <source src="podcast/حكاية%20حرب/Al%20Jazeera%20Podcasts%20الجزيرة%20بودكاست%20-%20عندما%20تحارب%20الحمير.mp3" type="audio/mp3">
-                    </audio>
-                </div>
-            </div>
-        </div>
-        <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-            <div class="image" style="background-image: url('podcast/حكاية حرب/image (2).jpg');"></div>
-            <div class="text">
-                <h3 class="font-weight-light">العبقري الصغير</h3>
-                <div class="text-white mb-3"><span class="text-black-opacity-05"><small> AlJazeera Podcast <span class="sep">/</span> 6 September 2021 </small></span></div>
-                <p class="mb-4">إنها الحرب، تجبر الصغير والكبير على أشياء استثنائية، وتظهر قوى خارقة. في زمن لم يكن به رسائل صوتية، ولا قطعة الذاكرة التي تتسع لآلاف المعلومات، لم يجد المقاومون الفرنسيون بدًا من ابتداع طرق جديدة في التواصل، ولكن كيف؟ إنه مارسيل ذو الستة أعوام ينقل بشجاعة وحرفية رسائل المقاومة التي حفظها عن ظهر قلب، يمر ببراءة طفل أمام الجنود النازيين، وينقل الرسائل باحترافية جاسوس، هكذا كان مارسيل.. استمعوا إلى الحكاية كاملة من بودكاست "حكايات الحرب"، مع أسعد طه. </p>
-                <div class="player">
-                    <audio id="player2" preload=auto controls style="width: 90%">
-                        <source src="podcast/حكاية%20حرب/Al%20Jazeera%20Podcasts%20الجزيرة%20بودكاست%20-%20العبقري%20الصغير.mp3" type="audio/mp3">
-                    </audio>
-                </div>
-            </div>
-        </div>
-        <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-            <div class="image" style="background-image: url('podcast/حكاية حرب/image (3).jpg');"></div>
-            <div class="text">
-                <h3 class="font-weight-light">الحب الذي هزم الجدار</h3>
-                <div class="text-white mb-3"><span class="text-black-opacity-05"><small> AlJazeera Podcast <span class="sep">/</span> 30 August 2021 </small></span></div>
-                <p class="mb-4">حكاية أخرى يثبت فيها الحب أنه قادر على تجاوز الحدود والحروب والزمن، حكاية نروي فيها كيف يحطم الحب الجدران ويسمو على بشاعة الحرب، حتى لو حالت بين الحبيبين أعتى أجهزة مخابرات العالم وحرسهم وكلابهم وأسلحته. في هذه القصة من "حكايات الحرب"، يروي لنا أسعد طه كيف استطاعت روجينا أن تخبئ حبها وتتجاوز به جدار برلين من ألمانيا الشرقية إلى ألمانيا الغربية.</p>
-                <div class="player">
-                    <audio id="player2" preload=auto controls style="width: 90%">
-                        <source src="podcast/حكاية%20حرب/Al%20Jazeera%20Podcasts%20الجزيرة%20بودكاست%20-%20الحب%20الذي%20هزم%20الجدار.mp3" type="audio/mp3">
-                    </audio>
-                </div>
-            </div>
-        </div>
-        <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-            <div class="image" style="background-image: url('podcast/حكاية حرب/image (4).jpg');"></div>
-            <div class="text">
-                <h3 class="font-weight-light">الحبيبة المقاتلة</h3>
-                <div class="text-white mb-3"><span class="text-black-opacity-05"><small> AlJazeera Podcast <span class="sep">/</span> 23 August 2021 </small></span></div>
-                <p class="mb-4">لا يهم ما هو جنسك أو حالتك الصحية، لا تهم بنيتك أو استعدادك للقتال. كل ما في الأمر أن هناك حربًا ومحركك الوحيد هو الحب.. إذا فلتتحضر لدور البطولة!
-                    نعم، إنه الحب في زمن الحرب إذ يروي فصول حكايات خالدة، حكايات ملحمية أشبه بالمعجزات، كانت بطلتها "الحبيبة المقاتلة"، والتي لم تكن امرأة، بل دبابة لـ"حبيبة مقاتلة" أيضًا اجتاحت أراضي بيلاروسيا في الحرب السوفييتية النازية، في قصة ملحمية أخرى يرويها لكم أسعد طه في "حكايات الحرب".</p>
-                <div class="player">
-                    <audio id="player2" preload=auto controls style="width: 90%">
-                        <source src="podcast/حكاية%20حرب/Al%20Jazeera%20Podcasts%20الجزيرة%20بودكاست%20-%20الحبيبة%20المقاتلة.mp3" type="audio/mp3">
-                    </audio>
-                </div>
-            </div>
-        </div>
-        <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-            <div class="image" style="background-image: url('podcast/حكاية حرب/image (5).jpg');"></div>
-            <div class="text">
-                <h3 class="font-weight-light">رامو غير اللائق بطل فوق العادة</h3>
-                <div class="text-white mb-3"><span class="text-black-opacity-05"><small> AlJazeera Podcast <span class="sep">/</span> 17 August 2021 </small></span></div>
-                <p class="mb-4">حكاية إنسانية مركبة، من فتى من ذوي الإعاقة، اعتبره الجيش "غير لائق" للخدمة العسكرية، فأثبت أنه بطل قومي أنقذ زملائه. إنها حكاية الإرادة الإنسانية التي تتغلب على أي إعاقة في سبيل قضية عادلة ونبيلة وحماية الوطن والشعب. يروي لنا أسعد طه حكاية رامو المقاتل الشرس، والممرض الذي لم يبارح كتيبته والفدائي الذي رفض التقهقر، فسجل صفحة مضيئة في حرب البوسنة والهرسك. استمعوا إلى التفاصيل.</p>
-                <div class="player">
-                    <audio id="player2" preload=auto controls style="width: 90%">
-                        <source src="podcast/حكاية%20حرب/Al%20Jazeera%20Podcasts%20الجزيرة%20بودكاست%20-%20مذكرات%20إحسان..%20جندي%20مضطرب.mp3" type="audio/mp3">
-                    </audio>
-                </div>
-            </div>
-        </div>
-        <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-            <div class="image" style="background-image: url('podcast/حكاية حرب/image (6).jpg');"></div>
-            <div class="text">
-                <h3 class="font-weight-light">ملاك باستون الآخر</h3>
-                <div class="text-white mb-3"><span class="text-black-opacity-05"><small> AlJazeera Podcast <span class="sep">/</span> 10 August 2021 </small></span></div>
-                <p class="mb-4">vحكايتنا هذه المرة في مدينة باستون البلجيكية المحاصرة، وزمانها الحرب العالمية الثانية، أما بطلتها التي ضربت أنموذجا مثاليًا في التضحية والمهنية والإنسانية كانت أوغاستا، التي واجهت التمييز العنصري في ظل القذائف ورائحة الدماء، وأنكرت ذاتها ليحيا الباقون. استمعوا لأسعد طه وهو يروي لنا هذه الحكاية الفريدة من "حكايات الحرب"./p>
-                <div class="player">
-                    <audio id="player2" preload=auto controls style="width: 90%">
-                        <source src="podcast/حكاية%20حرب/Al%20Jazeera%20Podcasts%20الجزيرة%20بودكاست%20-%20ملاك%20باستون%20الآخر.mp3" type="audio/mp3">
-                    </audio>
-                </div>
-            </div>
-        </div>
-        <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-            <div class="image" style="background-image: url('podcast/حكاية حرب/image (7).jpg');"></div>
-            <div class="text">
-                <h3 class="font-weight-light">الضحية الاولى والاخيرة</h3>
-                <div class="text-white mb-3"><span class="text-black-opacity-05"><small> AlJazeera Podcast <span class="sep">/</span> 3 August 2021 </small></span></div>
-                <p class="mb-4">هذه حكاية اسم قبل كل شيء، اسم ارتبط بالاحتلال والتضحية، وارتبط أيضًا بالتحرير والصمود، اسم واحد مطابق لامرأتين: "مارجريت كيو"، أولى ضحايا الانتفاضة الإيرلندية بوجه بريطانيا العظمى، وآخر أبطال التحرير، اسم بدأ به تاريخ التحرر الإيرلندي وعنده انتهى. تابعوا الحكاية بتفاصيلها بصوت أسعد طه.</p>
-                <div class="player">
-                    <audio id="player2" preload=auto controls style="width: 90%">
-                        <source src="podcast/حكاية%20حرب/Al%20Jazeera%20Podcasts%20الجزيرة%20بودكاست%20-%20الضحية%20الأولى%20والأخيرة.mp3.mp3" type="audio/mp3">
-                    </audio>
-                </div>
-            </div>
-        </div>
-        <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-            <div class="image" style="background-image: url('podcast/حكاية حرب/image (8).jpg');"></div>
-            <div class="text">
-                <h3 class="font-weight-light">ماذا فعلت الصغبرة في الحرب</h3>
-                <div class="text-white mb-3"><span class="text-black-opacity-05"><small> AlJazeera Podcast <span class="sep">/</span> 28 July 2021 </small></span></div>
-                <p class="mb-4">هل يعقل أن تلهم فتاة في السابعة عشر من عمرها حركات التحرر العالمية؟ هل لفتاة في هذا العمر أن تخوض حربًا على جميع الجبهات التعبوية والقتالية واللوجستية؟ إنها ليبا راديتش، الفتاة الريفية الشيوعية التي خلدت اسمها في حرب تعددت الانتصارات فيها والهزائم، لكن الأقدار عادت وأنصفتها وكرمتها بعد موتها بحكاية فريدة يرويها لنا أسعد طه بصوته، في "حكايات الحرب".</p>
-                <div class="player">
-                    <audio id="player2" preload=auto controls style="width: 90%">
-                        <source src="podcast/حكاية%20حرب/Al%20Jazeera%20Podcasts%20الجزيرة%20بودكاست%20-%20ماذا%20فعلت%20الصغيرة%20في%20الحرب؟.mp3" type="audio/mp3">
-                    </audio>
-                </div>
-            </div>
-        </div>
-        <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-            <div class="image" style="background-image: url('podcast/حكاية حرب/image (9).jpg');"></div>
-            <div class="text">
-                <h3 class="font-weight-light">سيدة بالف مقاتل</h3>
-                <div class="text-white mb-3"><span class="text-black-opacity-05"><small> AlJazeera Podcast <span class="sep">/</span> 21 July 2021 </small></span></div>
-                <p class="mb-4">هذه المرة، حكايتنا من المكسيك ببطولة مطلقة من المقاتلة الشرسة بيترا هريرا، التي فندت فكرة أن النساء لا يخضن المعارك، ولا يحدثن فرقًا جوهريًا ولا يستطعن القيادة. إنها بيترا هريرا التي لم تكترث حين لم يعترف بفضلها قادة المعارك، وأسست جيشًا من النساء القادرات على حمل السلاح وهموم شعبهن. حكاية بيترا هيريرا التي أصبحت رمزًا وحكاية في الثقافة المكسيكية، يرويها أسعد طه بصوته.. استمعوا للحكاية..</p>
-                <div class="player">
-                    <audio id="player2" preload=auto controls style="width: 90%">
-                        <source src="podcast/حكاية%20حرب/Al%20Jazeera%20Podcasts%20الجزيرة%20بودكاست%20-%20سيدة%20بألف%20مقاتل.mp3" type="audio/mp3">
-                    </audio>
-                </div>
-            </div>
-        </div>
+        <?php } ?>
+       
 
 
 
