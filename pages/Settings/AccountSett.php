@@ -186,11 +186,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         document.getElementById("info").innerHTML="";
     }
 </script>
-<body>
+<body dir="ltr">
 
 <section class="py-5 my-5">
     <div class="container">
-        <div class="bg-white shadow rounded-lg d-block d-sm-flex">
+        <div class="bg-white shadow rounded-lg d-block d-sm-flex" style="
+    direction: rtl;">
             <div class="profile-tab-nav border-right">
                 <div class="p-4">
                     <div class="img-circle text-center mb-3">

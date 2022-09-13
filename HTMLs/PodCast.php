@@ -120,7 +120,6 @@ function uploadFileByName($fileParamName){
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
           integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
-    <link rel="stylesheet" href="C:\Users\lenoi\PhpstormProjects\font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -180,7 +179,6 @@ function uploadFileByName($fileParamName){
         crossorigin="anonymous"
     ></script>
 </head>
-<body class="mainm"id="hh">
 
 <header>
     <nav class="navigation" id="myTopnav">
@@ -205,18 +203,34 @@ function uploadFileByName($fileParamName){
                         </a>
 
                         <div class="dropdown-content">
-
-
-                            <a href="#" class="">
+                        <a href="#" class="">
                                 <div class="media align-items-center">
                                     <div class="">
                                         <i class="fa fa-user "></i>
                                     </div>
                                     <div class="media-body ml-3">
-                                        <h6 class="drop">الإعدادات</h6>
+                                        <h6 class="drop" style="margin-left:100px:">حسابي</h6>
                                     </div>
                                 </div>
                             </a>
+
+
+                            <?php
+                            if (isset($_SESSION['login_user']) && $_SESSION['login_user'] === "Mohammad Omar") {
+                                ?>
+                                <a href="../pages/home/adminpage.php" class="">
+                                    <div class="media align-items-center">
+                                        <div class="">
+                                            <i class="fa fa-cog"></i>
+                                        </div>
+                                        <div class="media-body ml-3">
+                                            <h6 class="drop">تعديل</h6>
+                                        </div>
+                                    </div>
+                                </a>
+                                <?php
+                            }
+                            ?>
                             <a href="#" class="">
                                 <div class="media align-items-center">
                                     <div class="">
@@ -239,12 +253,13 @@ function uploadFileByName($fileParamName){
 
     </nav>
 </header>
+<body class="mainm"id="hh">
 
 <div>
     
     <?php
     if($isAdmin){?>
-    <button style="margin-top:100px;margin-left: 38cm" type="button" dir="rtl" data-toggle="modal" id="modal2" data-target="#addItemModal">إضافة
+    <button style="margin-top:100px;margin-left:38cm;background-color:"  type="button" dir="rtl" data-toggle="modal" id="modal2" data-target="#addItemModal">إضافة
 </button>
 <?php }?>
     

@@ -140,7 +140,7 @@ while ($row = mysqli_fetch_array($result)) {
                                         <i class="fa fa-user "></i>
                                     </div>
                                     <div class="media-body ml-3">
-                                        <h6 class="drop">الإعدادات</h6>
+                                        <h6 class="drop" dir="rtl">حسابي</h6>
                                     </div>
                                 </div>
                             </a>
@@ -150,7 +150,7 @@ while ($row = mysqli_fetch_array($result)) {
                                 <a href="../pages/home/adminpage.php" class="">
                                     <div class="media align-items-center">
                                         <div class="">
-                                            <i class="fa fa-sign-out  "></i>
+                                            <i class="fa fa-cog"></i>
                                         </div>
                                         <div class="media-body ml-3">
                                             <h6 class="drop">تعديل</h6>

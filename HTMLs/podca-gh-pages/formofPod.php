@@ -39,9 +39,9 @@
             </div>
         </div>
     </div>
-    <div class="modal-footer" style="margin-left:18cm;margin-top:.5cm;">
+    <div class="modal-footer" style="margin-left:17.5cm;margin-top:.5cm;">
 
-        <button type="submit"  id="submit" name="SubmitNewAudio" action="inedx.php" >إضافة</button>
+        <button type="submit"  id="submit" class="btn btn-primary" style="width:fit-content;background-color: #3276b1;" name="SubmitNewAudio" action="inedx.php" >إضافة</button>
     </div>
 </div> 
 </form>

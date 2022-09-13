@@ -24,6 +24,6 @@
     </div>
     <div class="modal-footer" style="margin-left:18cm;margin-top:.5cm;">
 
-        <button type="submit"  id="submit" name="SubmitNewAudio" >إضافة</button>
+        <button type="submit" class="btn btn-primary" style="width: fit-content" id="submit" name="SubmitNewAudio" >إضافة</button>
 </div>
     </form>

@@ -71,7 +71,7 @@
             <img src="../../images/نهضة2.png">
             <u1 >
                 <li> <a href="../../HTMLs/Home.php"> الرئيسية </a> </li>
-                <li> <a href="#">بودكاست</a> </li>
+                <li> <a href="../../HTMLs/PodCast.php">بودكاست</a> </li>
                 <li> <a href="#">لطفلك</a> </li>
                 <li> <a href="#">من نحن</a> </li>
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">

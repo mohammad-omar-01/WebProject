@@ -125,7 +125,7 @@ while ($row3 = mysqli_fetch_array($result3)) {
     
     <?php
     if($isAdmin){?>
-    <button style="margin-top:100px;margin-left: 38cm" type="button" dir="rtl" data-toggle="modal" id="modal2" data-target="#addItemModal">إضافة
+<button style="margin-top:100px;margin-left: 38cm;background-color: #3276b1;border: aliceblue;" class="btn btn-primary" type="button" dir="rtl" data-toggle="modal" id="modal2" data-target="#addItemModal">إضافة
 </button>
 <?php }?>
     
